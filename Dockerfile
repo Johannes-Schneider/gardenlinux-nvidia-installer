@@ -50,7 +50,8 @@ RUN rm -rf /var/lib/apt/lists/* /usr/bin/dpkg /sbin/start-stop-daemon /usr/lib/x
          /usr/bin/chfn /usr/bin/gpasswd
 
 RUN mkdir -p /rootfs \
-        && cp -ar /bin /boot /etc /home /lib /lib64 /media /mnt /opt /out /root /run /sbin /srv /tmp /usr /var /rootfs
+        && cp -ar /bin /boot /etc /home /lib /lib64 /media /mnt /out /root /run /sbin /srv /tmp /usr /var /rootfs
+        && find /opt -type f -not -path '/opt/actions_runner/*' -exec cp '{}' '/rootfs/opt/{}' \;
 
 FROM scratch
 
